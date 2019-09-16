@@ -1,0 +1,346 @@
+<body style="background-color:;">
+
+<div id="top" class="printed">
+<h1>Store 304 Truck Productivity Tracker</h1>
+</div>
+
+<div id="bottom">
+<div class="notprinted">
+<br><br>
+
+<table style="width:80%">
+<form  action="#" onSubmit="empNumber(empTotal.value)">
+
+	<tr>	
+		<td colspan="" align="">
+			Date: 
+		</td>
+		<td>
+			<input type="date" id="date" value="" required><br>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Manifest:
+		</td>
+		<td>
+			<input type="number" id="tManifest" value="" required><br>
+		</td>	
+	</tr>
+	<tr>
+		<td>
+			Number of Employees:
+		</td>
+		<td>
+			<input type="number" id="empTotal" value="" required><br>
+		</td>	
+	</tr>
+	<tr>
+		<td>			
+			Truck Size (after Gift Cards):
+		</td>
+		<td>
+		<input type="number" id="tSize" value="" required><br>
+		</td>
+	</tr>
+		<tr>
+		<td>			
+			Truck Lead:
+		</td>
+		<td>
+		<input type="text" id="tLead" value="" required><br>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+		<input type="submit" value="Submit">
+		</td>
+	</tr>
+</table>
+</form>
+
+<div id="iHold" class="notprinted">
+<center>
+<!--  info enter -->	
+<table id="tableInputs" style="width:60%;display:none;background-color:white">
+<form action="#" onSubmit= "enter()">
+
+<thead>
+<tr id="tLine" class="enter"  style="text-align:center;display:none">
+	<th>Employee</th>
+	<th>Shift Start Time</th>
+</tr>
+</thead>
+<tbody>
+<tr id="tLine0" class="enter"   style="display:none">
+	<td>
+	<input type="text" id="emp0" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time0" style="font-size:20px"></input>
+	</td>
+</tr>
+<tr id="tLine1" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp1" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time1" style="font-size:20px"></input>
+	</td>
+</tr>
+<tr id="tLine2" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp2" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time2" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine3" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp3" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time3" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine4" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp4" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time4" style="font-size:20px"></input>
+	</td>
+</tr>
+<tr id="tLine5" class="enter" style="display:none">
+	<td>
+	<input type="text" id="emp5" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time5" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine6" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp6" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time6" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine7" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp7" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time7" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine8"  class="enter" style="display:none">
+	<td>
+	<input type="text" id="emp8" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time8" style="font-size:20px"></input>
+	</td>	
+</tr>
+<tr id="tLine9" class="enter"  style="display:none">
+	<td>
+	<input type="text" id="emp9" style="font-size:20px"></input>
+	</td>
+	<td>
+	<input type="time" id="time9" style="font-size:20px"></input>
+	</td>	
+</tr>
+
+<tr>
+</tr>
+<tr class="enter" id="tableSubmit" style="display:none">
+		<td colspan="2" align="center">
+		<input type="submit" value="Enter"></span>
+		</td>
+</tr>
+</tbody>
+</table>
+</form>
+
+</center>			
+</div>
+
+
+<!--  <button onclick="window.print();">Print</button>    -->
+</div>
+<!--  Info to print -->
+
+
+<div id="printDIV" class="printed" style="display:none;width:100%;height:900px">
+<center>
+<table class="printed" style="background-color:;width:100%;text-align:center">
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left">
+	Date: <span id="printDate"></span>
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left">
+	Manifest: <span id="printManifest"></span>
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left">
+	Truck Size: <span id="printTSize"></span>
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left">
+	Truck Lead: <span id="printTLead"></span>
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left;height:10px">
+	</td>	
+</tr>
+
+
+
+<tr id="printLine" style="">
+	<td>
+		<b><u>Employee</u></b>
+	</td>
+	<td>
+		<b><u>Shift Start Time</u></b>
+	</td>
+</tr>
+<tr id="printLine0">
+	<td>
+	<span id="empHold0" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold0" style="font-size:20px"></span>
+	</td>
+</tr>
+<tr id="printLine1">
+	<td>
+	<span id="empHold1" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold1" style="font-size:20px"></span>
+	</td>
+</tr>
+<tr id="printLine2">
+	<td>
+	<span id="empHold2" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold2" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine3">
+	<td>
+	<span id="empHold3" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold3" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine4">
+	<td>
+	<span id="empHold4" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold4" style="font-size:20px"></span>
+	</td>
+</tr>
+<tr id="printLine5">
+	<td>
+	<span id="empHold5" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold5" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine6">
+	<td>
+	<span id="empHold6" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold6" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine7">
+	<td>
+	<span id="empHold7" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold7" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine8">
+	<td>
+	<span id="empHold8" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold8" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr id="printLine9">
+	<td>
+	<span id="empHold9" style="font-size:20px"></span>
+	</td>
+	<td>
+	<span id="timeHold9" style="font-size:20px"></span>
+	</td>	
+</tr>
+<tr>
+<td class="levels2" colspan=2>
+Completion Goal
+</td>
+</tr>
+<tr class="levels">
+	<td class="levels3">
+	<span style="color:gold">Gold</span>
+	</td>
+	<td class="levels3">
+	<span id="gGoalL"></span>	
+	</td>
+</tr>
+<tr class="levels">
+	<td class="levels3">
+	<span style="color:silver">Silver</span>
+	</td>
+	<td class="levels3">
+	<span id="sGoalL"></span>	
+	</td>
+</tr>
+<tr class="levels">
+	<td class="levels3">
+	<span style="color:brown">Bronze</span>
+	</td>
+	<td class="levels3">
+	<span id="bGoalL"></span>
+	</td>
+</tr>
+
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:left;height:10px">
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:125%;text-align:right;height:50px">
+	Completion Time: _______________
+	</td>	
+</tr>
+<tr>
+	<td colspan=2 style="font-size:75%;text-align:center;height:20px">
+	Please Staple this Sheet to the DC Truck Checklist
+	</td>	
+</tr>
+
+</table>
+</center>
+</div>
+
+</div>
+
+</body>
+	
