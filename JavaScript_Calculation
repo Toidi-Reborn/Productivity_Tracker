@@ -1,0 +1,592 @@
+
+<script>
+
+	var emp = [0,0,0,0,0,0,0,0,0,0];
+	var time = [0,0,0,0,0,0,0,0,0,0];
+	var timeC = [0,0,0,0,0,0,0,0,0,0];
+	var minTimeH;
+	var minTime;
+	var addTime;
+	var budgetHoursB;
+	var budgetHoursS;
+	var budgetHoursG;
+	var empCount;
+	var bGoal;
+	var sGoal;
+	var gGoal;
+	var tLead;
+
+	function PrintDiv(id) {
+	var data=document.getElementById(id).innerHTML;
+	var myWindow= window.open('','my div', 'height=800, width=1200');
+	myWindow.document.write('<html><head><title>Print</title>');
+	myWindow.document.write('</head><body >');
+	myWindow.document.write(data);
+	myWindow.document.write('</body></html>');
+	
+	myWindow.document.close();
+	
+}
+
+	
+function ampm(time){
+	var y = (time);
+	var a = y.split(':');
+	var x;
+	var minutes = a[1];
+	var hours = Number(a[0]);
+	if (hours > 12 ) {
+		x = "PM";
+		hours -= 12;
+	} else if (hours < 12 ) {
+		x = "AM";
+			if (hours == 0 ) {
+			hours = 12;
+		}
+	} else {
+		x = "PM";
+	}
+	
+	var setTime = hours + ':' + minutes + ' ' + x;
+	return setTime;
+}	
+	
+function toTime(data){
+	var x = data;
+	var ms = parseInt(x%1000);
+	var seconds = parseInt((x/1000)%60);
+	var minutes = parseInt((x/(1000*60))%60);
+	var hours = parseInt((x/(1000*60*60))%24);
+	
+	hours = (hours < 10) ? "0" + hours : hours;
+	minutes = (minutes < 10) ? "0" + minutes : minutes;
+	return hours + ":" + minutes;
+	
+}
+
+	
+function empNumber(empData){
+	var x = Number(empData);
+	window.empCount = x;
+
+	//alert(x)	
+		
+	document.getElementById("tableSubmit").style.display = "table-row"
+	document.getElementById("tLine").style.display = "table-row"
+	document.getElementById("tableInputs").style.display = "table"
+
+		
+switch (x) {
+  
+	case 2:
+	window.emp.splice(2,8)
+	window.time.splice(2,8)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	window.minTimeH = 2
+	break;
+
+	case 3:	
+	window.emp.splice(3,7)
+	window.time.splice(3,7)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	window.minTimeH = 3	
+	break;
+
+	case 4:	
+	window.emp.splice(4,6)
+	window.time.splice(4,6)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	window.minTimeH = 4
+	break;
+
+	case 5:	
+	window.emp.splice(5,5)
+	window.time.splice(5,5)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	document.getElementById("tLine4").style.display = "table-row"
+	window.minTimeH = 5
+	break;
+
+	case 6:	
+	window.emp.splice(6,4)
+	window.time.splice(6,4)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	document.getElementById("tLine4").style.display = "table-row"
+	document.getElementById("tLine5").style.display = "table-row"
+	window.minTimeH = 6
+	break;
+
+	case 7:	
+	window.emp.splice(7,3)
+	window.time.splice(7,3)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	document.getElementById("tLine4").style.display = "table-row"
+	document.getElementById("tLine5").style.display = "table-row"
+	document.getElementById("tLine6").style.display = "table-row"		
+	window.minTimeH = 7
+	break;
+
+	case 8:	
+	window.emp.splice(8,2)
+	window.time.splice(8,2)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	document.getElementById("tLine4").style.display = "table-row"
+	document.getElementById("tLine5").style.display = "table-row"
+	document.getElementById("tLine6").style.display = "table-row"		
+	document.getElementById("tLine7").style.display = "table-row"		
+	window.minTimeH = 8
+	break;
+
+	case 9:	
+	window.emp.splice(9,1)
+	window.time.splice(9,1)
+	document.getElementById("tLine0").style.display = "table-row"
+	document.getElementById("tLine1").style.display = "table-row"
+	document.getElementById("tLine2").style.display = "table-row"
+	document.getElementById("tLine3").style.display = "table-row"
+	document.getElementById("tLine4").style.display = "table-row"
+	document.getElementById("tLine5").style.display = "table-row"
+	document.getElementById("tLine6").style.display = "table-row"		
+	document.getElementById("tLine7").style.display = "table-row"		
+	document.getElementById("tLine8").style.display = "table-row"
+	window.minTimeH = 9
+	break;
+
+	default:
+	alert ("Please Refreash the Page and Enter a Number Between 2 and 9");
+	break;
+	}
+
+
+	window.emp[0] = document.getElementById("tLead").value;
+	window.time[0] = "21:30";
+
+	document.getElementById("emp0").value = window.emp[0];
+	document.getElementById("time0").value = window.time[0];
+
+}
+
+function enter(){
+
+window.emp[0] = document.getElementById("emp0").value;
+window.emp[1] = document.getElementById("emp1").value;
+window.emp[2] = document.getElementById("emp2").value;
+window.emp[3] = document.getElementById("emp3").value;
+window.emp[4] = document.getElementById("emp4").value;
+window.emp[5] = document.getElementById("emp5").value;
+window.emp[6] = document.getElementById("emp6").value;
+window.emp[7] = document.getElementById("emp7").value;
+window.emp[8] = document.getElementById("emp8").value;
+window.emp[9] = document.getElementById("emp9").value;
+
+window.time[0] = document.getElementById("time0").value;
+window.time[1] = document.getElementById("time1").value;
+window.time[2] = document.getElementById("time2").value;
+window.time[3] = document.getElementById("time3").value;
+window.time[4] = document.getElementById("time4").value;
+window.time[5] = document.getElementById("time5").value;
+window.time[6] = document.getElementById("time6").value;
+window.time[7] = document.getElementById("time7").value;
+window.time[8] = document.getElementById("time8").value;
+window.time[9] = document.getElementById("time9").value;
+
+
+window.date = document.getElementById("date").value;
+window.tSize = document.getElementById("tSize").value;
+window.tManifest = document.getElementById("tManifest").value;
+window.tLead = document.getElementById("tLead").value;
+
+document.getElementById("printDate").innerHTML = window.date;
+document.getElementById("printTSize").innerHTML = window.tSize;
+document.getElementById("printManifest").innerHTML = window.tManifest;
+document.getElementById("printTLead").innerHTML = window.tLead;	
+
+
+//calculations pt 1
+
+
+
+var y = window.time[0];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[0] = seconds;
+
+var y = window.time[1];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[1] = seconds;
+
+var y = window.time[2];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[2] = seconds;
+
+var y = window.time[3];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[3] = seconds;
+
+var y = window.time[4];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[4] = seconds;
+
+var y = window.time[5];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[5] = seconds;
+
+var y = window.time[6];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[6] = seconds;
+
+var y = window.time[7];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[7] = seconds;
+
+var y = window.time[8];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[8] = seconds;
+
+var y = window.time[9];
+var a = y.split(':');
+var seconds = (a[0]) * 3600000 + ((a[1]) * 60000);
+window.timeC[9] = seconds;
+
+
+//find earliest start after emp total entered
+var x = window.minTimeH;
+switch (x) {
+
+case 2:
+	window.minTime = Math.min(window.timeC[0],window.timeC[1])
+	break;
+case 3:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2])	
+	break;
+case 4:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3])
+	break;
+case 5:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3],window.timeC[4])
+	break;
+case 6:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3],window.timeC[4],window.timeC[5])
+	break;
+case 7:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3],window.timeC[4],window.timeC[5],window.timeC[6])
+	break;
+case 8:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3],window.timeC[4],window.timeC[5],window.timeC[6],window.timeC[7])
+	break;
+case 9:	
+	window.minTime = Math.min(window.timeC[0],window.timeC[1],window.timeC[2],window.timeC[3],window.timeC[4],window.timeC[5],window.timeC[6],window.timeC[7],window.timeC[8])
+	break;
+
+default:
+	alert ("Something Went Wrong");
+		break;
+
+}
+// end of switch
+
+//addtime calculation
+var y = window.minTimeH;
+switch (y) {
+
+case 2:
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	Number(window.addTime = a+b)
+
+	break;
+case 3:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	Number(window.addTime = a+b+c)		
+	break;
+case 4:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d)		
+	break;
+case 5:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	var e = Number(window.timeC[4]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d+e)	
+	break;
+case 6:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	var e = Number(window.timeC[4]) - Number(window.minTime);
+	var f = Number(window.timeC[5]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d+e+f)		
+	break;
+case 7:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	var e = Number(window.timeC[4]) - Number(window.minTime);
+	var f = Number(window.timeC[5]) - Number(window.minTime);
+	var g = Number(window.timeC[6]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d+e+f+g)
+	break;
+case 8:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	var e = Number(window.timeC[4]) - Number(window.minTime);
+	var f = Number(window.timeC[5]) - Number(window.minTime);
+	var g = Number(window.timeC[6]) - Number(window.minTime);
+	var h = Number(window.timeC[7]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d+e+f+g+h)
+	break;
+case 9:	
+	var a = Number(window.timeC[0]) - Number(window.minTime);
+	var b = Number(window.timeC[1]) - Number(window.minTime);
+	var c = Number(window.timeC[2]) - Number(window.minTime);
+	var d = Number(window.timeC[3]) - Number(window.minTime);
+	var e = Number(window.timeC[4]) - Number(window.minTime);
+	var f = Number(window.timeC[5]) - Number(window.minTime);
+	var g = Number(window.timeC[6]) - Number(window.minTime);
+	var h = Number(window.timeC[7]) - Number(window.minTime);
+	var i = Number(window.timeC[8]) - Number(window.minTime);
+	Number(window.addTime = a+b+c+d+e+f+g+h+i)
+	break;
+
+default:
+	alert ("Something Went Wrong");
+		break;
+
+}
+
+
+//calculations pt 2
+
+//budget hours
+window.budgetHoursB = window.tSize / 85;
+window.budgetHoursS = window.tSize / 95;
+window.budgetHoursG = window.tSize / 110;
+// convert to ms
+window.budgetHoursB = window.budgetHoursB * 3600000;
+window.budgetHoursS = window.budgetHoursS * 3600000;
+window.budgetHoursG = window.budgetHoursG * 3600000;
+// add dif
+
+window.budgetHoursB += window.addTime;
+window.budgetHoursS += window.addTime;
+window.budgetHoursG += window.addTime;
+
+//get per emp
+window.budgetHoursB = window.budgetHoursB / window.empCount;
+window.budgetHoursS = window.budgetHoursS / window.empCount;
+window.budgetHoursG = window.budgetHoursG / window.empCount;
+
+
+window.bGoal = window.budgetHoursB + window.minTime;
+window.sGoal = window.budgetHoursS + window.minTime;
+window.gGoal = window.budgetHoursG + window.minTime;
+
+window.bGoal = toTime(window.bGoal);
+window.sGoal = toTime(window.sGoal);
+window.gGoal = toTime(window.gGoal);
+
+window.bGoal = ampm(window.bGoal);
+window.sGoal = ampm(window.sGoal);
+window.gGoal = ampm(window.gGoal);
+
+
+// get completion goal
+window.budgetHoursB = toTime(window.budgetHoursB);
+window.budgetHoursS = toTime(window.budgetHoursS);
+window.budgetHoursG = toTime(window.budgetHoursG);
+
+
+console.log ( window.minTime);
+console.log ( window.budgetHoursB);
+console.log ( window.budgetHoursS);
+console.log ( window.budgetHoursG);
+console.log (window.bGoal);
+console.log (window.sGoal);
+console.log (window.gGoal);
+
+document.getElementById("bGoalL").innerHTML = window.bGoal;
+document.getElementById("sGoalL").innerHTML = window.sGoal;
+document.getElementById("gGoalL").innerHTML = window.gGoal;
+
+
+<!-- for the print table -->
+var y = window.minTimeH;
+switch (y) {
+
+case 2:
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+
+	break;
+case 3:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	
+	break;
+case 4:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+		
+	break;
+case 5:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+	document.getElementById("empHold4").innerHTML = emp[4]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+	document.getElementById("timeHold4").innerHTML = ampm(time[4]);
+
+	break;
+case 6:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+	document.getElementById("empHold4").innerHTML = emp[4]; 
+	document.getElementById("empHold5").innerHTML = emp[5]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+	document.getElementById("timeHold4").innerHTML = ampm(time[4]);
+	document.getElementById("timeHold5").innerHTML = ampm(time[5]);
+			
+	break;
+case 7:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+	document.getElementById("empHold4").innerHTML = emp[4]; 
+	document.getElementById("empHold5").innerHTML = emp[5]; 
+	document.getElementById("empHold6").innerHTML = emp[6]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+	document.getElementById("timeHold4").innerHTML = ampm(time[4]);
+	document.getElementById("timeHold5").innerHTML = ampm(time[5]);
+	document.getElementById("timeHold6").innerHTML = ampm(time[6]);
+	break;
+	
+case 8:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+	document.getElementById("empHold4").innerHTML = emp[4]; 
+	document.getElementById("empHold5").innerHTML = emp[5]; 
+	document.getElementById("empHold6").innerHTML = emp[6]; 
+	document.getElementById("empHold7").innerHTML = emp[7]; 
+
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+	document.getElementById("timeHold4").innerHTML = ampm(time[4]);
+	document.getElementById("timeHold5").innerHTML = ampm(time[5]);
+	document.getElementById("timeHold6").innerHTML = ampm(time[6]);	
+	document.getElementById("timeHold7").innerHTML = ampm(time[7]);
+	break;
+case 9:	
+	document.getElementById("empHold0").innerHTML = emp[0]; 
+	document.getElementById("empHold1").innerHTML = emp[1]; 
+	document.getElementById("empHold2").innerHTML = emp[2]; 
+	document.getElementById("empHold3").innerHTML = emp[3]; 
+	document.getElementById("empHold4").innerHTML = emp[4]; 
+	document.getElementById("empHold5").innerHTML = emp[5]; 
+	document.getElementById("empHold6").innerHTML = emp[6]; 
+	document.getElementById("empHold7").innerHTML = emp[7]; 
+	document.getElementById("empHold8").innerHTML = emp[8]; 
+ 
+	document.getElementById("timeHold0").innerHTML = ampm(time[0]);
+	document.getElementById("timeHold1").innerHTML = ampm(time[1]);
+	document.getElementById("timeHold2").innerHTML = ampm(time[2]);
+	document.getElementById("timeHold3").innerHTML = ampm(time[3]);	
+	document.getElementById("timeHold4").innerHTML = ampm(time[4]);
+	document.getElementById("timeHold5").innerHTML = ampm(time[5]);
+	document.getElementById("timeHold6").innerHTML = ampm(time[6]);	
+	document.getElementById("timeHold7").innerHTML = ampm(time[7]);	
+	document.getElementById("timeHold8").innerHTML = ampm(time[8]);	
+
+	break;
+
+default:
+	alert ("Something Went Wrong");
+		break;
+
+}
+
+window.print();
+
+
+	
+
+	
+	
+
+}
+
+
+</script>
+		
+	
