@@ -1,0 +1,47 @@
+
+@media print {
+			
+head {
+	display:	none;
+	}
+	
+object	{
+	display:	block;
+	margin:	;
+	width:	100%;
+	max-width:	100%;
+	max-height:	10in;
+	}
+	
+object.pageBreak {
+	display: block;
+	page-break-after: always;
+	page-break-inside:	avoid;
+	}
+
+.printed {
+	display: inline !important;
+	}
+
+.notprinted {
+	display: none;
+	}
+	
+td.levels2	{
+	width:	8in !important;
+	}
+	
+td.levels3{
+	font-size:	40px;
+	border-bottom:	5px solid black;	
+	}
+
+tr.levels{
+	font-size:	30px;
+	border-bottom:	5px solid black;
+	}
+	
+}
+
+	
+	
